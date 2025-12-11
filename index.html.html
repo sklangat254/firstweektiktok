@@ -2,325 +2,179 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <title>CRB Check - Mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRB Check Image 1</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: fixed;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .container {
-            width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .scene {
-            text-align: center;
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
             width: 100%;
-            max-width: 100%;
-            padding: 0 15px;
-            opacity: 0;
-            position: absolute;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
 
         .emoji {
-            font-size: 15vw;
+            font-size: 80px;
+            margin-bottom: 30px;
             display: block;
-            margin-bottom: 15px;
-            line-height: 1;
         }
 
-        .huge-text {
-            font-size: 11vw;
+        .title {
+            font-size: 48px;
             font-weight: 900;
-            color: white;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            line-height: 1.1;
-            margin-bottom: 15px;
-            word-wrap: break-word;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .medium-text {
-            font-size: 8vw;
-            font-weight: 800;
-            color: white;
-            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-            margin-bottom: 12px;
-        }
-
-        .small-text {
-            font-size: 6vw;
+        .subtitle {
+            font-size: 28px;
+            color: #666;
+            margin-bottom: 40px;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .price-box {
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 25px;
-            display: inline-block;
-            margin: 15px 0;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .price-amount {
-            font-size: 12vw;
-            font-weight: 900;
-        }
-
-        .badge {
-            background: #ff6b6b;
-            color: white;
-            padding: 10px 20px;
+        .price-container {
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border-radius: 20px;
-            font-size: 5vw;
-            font-weight: 800;
-            display: inline-block;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            padding: 30px;
+            margin-bottom: 30px;
         }
 
-        .badge-star {
-            background: linear-gradient(135deg, #ffd93d, #ff9800);
+        .price-label {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
         }
 
-        .cta-button {
-            background: white;
-            color: #667eea;
-            padding: 18px 35px;
-            border-radius: 40px;
-            font-size: 7vw;
+        .price {
+            font-size: 64px;
             font-weight: 900;
-            display: inline-block;
-            margin-top: 20px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .price-note {
+            color: white;
+            font-size: 20px;
+            opacity: 0.9;
+        }
+
+        .features {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .feature {
+            font-size: 22px;
+            color: #444;
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+
+        .feature:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 28px;
+        }
+
+        .cta {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            font-size: 32px;
+            font-weight: 800;
+            padding: 25px 50px;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* Animations */
-        @keyframes zoomIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            100% { opacity: 1; transform: scale(1); }
+        .footer {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #999;
         }
 
-        @keyframes slideLeft {
-            0% { opacity: 0; transform: translateX(-100%); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
+        @media (max-width: 768px) {
+            .card {
+                padding: 40px 30px;
+            }
 
-        @keyframes slideRight {
-            0% { opacity: 0; transform: translateX(100%); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
+            .emoji {
+                font-size: 60px;
+            }
 
-        @keyframes slideTop {
-            0% { opacity: 0; transform: translateY(-100%); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+            .title {
+                font-size: 36px;
+            }
 
-        @keyframes slideBottom {
-            0% { opacity: 0; transform: translateY(100%); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+            .subtitle {
+                font-size: 22px;
+            }
 
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            50% { transform: scale(1.1); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+            .price {
+                font-size: 48px;
+            }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
+            .feature {
+                font-size: 18px;
+            }
 
-        .animate-zoom { animation: zoomIn 0.6s ease-out; }
-        .animate-slideLeft { animation: slideLeft 0.6s ease-out; }
-        .animate-slideRight { animation: slideRight 0.6s ease-out; }
-        .animate-slideTop { animation: slideTop 0.6s ease-out; }
-        .animate-slideBottom { animation: slideBottom 0.6s ease-out; }
-        .animate-bounce { animation: bounceIn 0.7s ease-out; }
-        .pulse-forever { animation: pulse 2s ease-in-out infinite; }
+            .cta {
+                font-size: 24px;
+                padding: 20px 40px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="container"></div>
+    <div class="card">
+        <span class="emoji">📊</span>
+        <h1 class="title">Check Your<br>CRB Status</h1>
+        <p class="subtitle">Know Your Credit Score Today</p>
 
-    <script>
-        const scenes = [
-            {
-                html: `
-                    <div class="emoji">😱</div>
-                    <div class="huge-text">Ever Been<br>Denied<br>a Loan?</div>
-                `,
-                animation: 'animate-zoom',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="emoji">🤔</div>
-                    <div class="huge-text">Your CRB<br>Status<br>Matters</div>
-                `,
-                animation: 'animate-slideLeft',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="emoji">❓</div>
-                    <div class="huge-text">What's Your<br>Credit<br>Score?</div>
-                `,
-                animation: 'animate-slideRight',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="badge">✨ NEW</div>
-                    <div class="medium-text">Check Your</div>
-                    <div class="huge-text">CRB STATUS</div>
-                    <div class="small-text">In 2 Minutes</div>
-                `,
-                animation: 'animate-slideTop',
-                duration: 7000
-            },
-            {
-                html: `
-                    <div class="emoji pulse-forever">⚡</div>
-                    <div class="huge-text">Instant<br>Results</div>
-                    <div class="small-text">No Waiting</div>
-                `,
-                animation: 'animate-bounce',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="medium-text">Starting From</div>
-                    <div class="price-box pulse-forever">
-                        <div class="price-amount">KES 100</div>
-                    </div>
-                    <div class="small-text">Basic Report</div>
-                `,
-                animation: 'animate-slideBottom',
-                duration: 7000
-            },
-            {
-                html: `
-                    <div class="badge badge-star">⭐ POPULAR</div>
-                    <div class="medium-text">Standard</div>
-                    <div class="price-box pulse-forever">
-                        <div class="price-amount">KES 150</div>
-                    </div>
-                    <div class="small-text">Most Chosen</div>
-                `,
-                animation: 'animate-zoom',
-                duration: 7000
-            },
-            {
-                html: `
-                    <div class="emoji">💎</div>
-                    <div class="medium-text">Premium</div>
-                    <div class="price-box pulse-forever">
-                        <div class="price-amount">KES 200</div>
-                    </div>
-                    <div class="small-text">Complete Report</div>
-                `,
-                animation: 'animate-slideRight',
-                duration: 7000
-            },
-            {
-                html: `
-                    <div class="emoji">🔒</div>
-                    <div class="huge-text">100%<br>SECURE</div>
-                    <div class="small-text">Bank Level Security</div>
-                `,
-                animation: 'animate-bounce',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="emoji">📱</div>
-                    <div class="huge-text">Pay with<br>M-PESA</div>
-                    <div class="small-text">Quick & Easy</div>
-                `,
-                animation: 'animate-slideLeft',
-                duration: 6000
-            },
-            {
-                html: `
-                    <div class="badge pulse-forever">🔥 ACT NOW</div>
-                    <div class="huge-text">Check<br>Today!</div>
-                    <div class="cta-button pulse-forever">Link in Bio ☝️</div>
-                `,
-                animation: 'animate-zoom',
-                duration: 8000
-            },
-            {
-                html: `
-                    <div class="emoji">⏰</div>
-                    <div class="huge-text">Don't<br>Wait!</div>
-                    <div class="medium-text">Swipe Up Now</div>
-                `,
-                animation: 'animate-slideTop',
-                duration: 6000
-            }
-        ];
+        <div class="price-container">
+            <div class="price-label">Starting From</div>
+            <div class="price">KES 100</div>
+            <div class="price-note">Instant Results</div>
+        </div>
 
-        let currentIndex = 0;
-        const container = document.getElementById('container');
-        let isTransitioning = false;
+        <div class="features">
+            <div class="feature">Get Results in 2 Minutes</div>
+            <div class="feature">100% Secure & Private</div>
+            <div class="feature">Pay with M-Pesa</div>
+            <div class="feature">3 Report Types Available</div>
+        </div>
 
-        function showScene() {
-            if (isTransitioning) return;
-            isTransitioning = true;
+        <button class="cta">Check Now</button>
 
-            const scene = scenes[currentIndex];
-            const sceneDiv = document.createElement('div');
-            sceneDiv.className = `scene ${scene.animation}`;
-            sceneDiv.innerHTML = scene.html;
-            
-            // Add new scene immediately
-            container.appendChild(sceneDiv);
-
-            // Remove old scene after animation starts
-            const oldScenes = container.querySelectorAll('.scene');
-            if (oldScenes.length > 1) {
-                oldScenes[0].remove();
-            }
-
-            currentIndex = (currentIndex + 1) % scenes.length;
-            
-            // Schedule next scene with smoother transition
-            setTimeout(() => {
-                isTransitioning = false;
-                showScene();
-            }, scene.duration - 500); // Slight overlap for smooth transition
-        }
-
-        showScene();
-    </script>
+        <div class="footer">Safe • Fast • Reliable</div>
+    </div>
 </body>
 </html>
